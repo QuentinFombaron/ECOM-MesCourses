@@ -1,0 +1,28 @@
+{
+    "name": "Inscription",
+    "fields": [
+        {
+            "fieldName": "role",
+            "fieldType": "Metier",
+            "fieldValues": "MEDECIN,KINESITHERAPEUTE,PODOLOGUE,CONTROLEUR"
+        },
+        {
+            "fieldName": "user",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "course",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181023152007",
+    "entityTableName": "inscription",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

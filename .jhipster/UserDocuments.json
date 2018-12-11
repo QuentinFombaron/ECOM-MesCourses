@@ -1,0 +1,48 @@
+{
+    "name": "UserDocuments",
+    "fields": [
+        {
+            "fieldName": "dateDeNaissance",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "sexe",
+            "fieldType": "Sexe",
+            "fieldValues": "HOMME,FEMME"
+        },
+        {
+            "fieldName": "certificatMedical",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "licenseFederale",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "documentComplementaire",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "userDocuments"
+        }
+    ],
+    "changelogDate": "20181023152005",
+    "entityTableName": "user_documents",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

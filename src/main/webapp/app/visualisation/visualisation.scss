@@ -1,0 +1,65 @@
+/* ==========================================================================
+Main page styles
+========================================================================== */
+/* The grid: Four equal columns that floats next to each other */
+* {
+    box-sizing: border-box;
+}
+
+/* The grid: Four equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 25%;
+    padding: 10px;
+}
+
+/* Style the images inside the grid */
+.littleImages {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.littleImages:hover {
+    opacity: 1;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+/* The expanding image container */
+.container {
+    position: relative;
+    display: block;
+}
+
+.mescourses {
+    display: inline-block;
+    width: 347px;
+    height: 497px;
+    background: url('../../content/images/mescourses.png') no-repeat center top;
+    background-size: contain;
+}
+
+#joinRunnersDiv {
+    display: none;
+}
+
+#joinBenevolesDiv {
+    display: none;
+}
+
+/* wait autoprefixer update to allow simple generation of high pixel density media query */
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (-moz-min-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    .hipster {
+        background: url('../../content/images/hipster2x.png') no-repeat center top;
+        background-size: contain;
+    }
+}

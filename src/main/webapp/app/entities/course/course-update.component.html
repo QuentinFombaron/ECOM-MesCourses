@@ -1,0 +1,165 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-course-heading">Create or edit a Course</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!course.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="course.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_organisateur">Organisateur</label>
+                    <input type="number" class="form-control" name="organisateur" id="field_organisateur"
+                        [(ngModel)]="course.organisateur" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_titre">Titre</label>
+                    <input type="text" class="form-control" name="titre" id="field_titre"
+                        [(ngModel)]="course.titre" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="course.description" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sport">Sport</label>
+                    <select class="form-control" name="sport" [(ngModel)]="course.sport" id="field_sport" >
+                        <option value="COURSE_A_PIED">COURSE_A_PIED</option>
+                        <option value="MARATHON">MARATHON</option>
+                        <option value="RANDONNEE">RANDONNEE</option>
+                        <option value="COURSE_A_VELO">COURSE_A_VELO</option>
+                        <option value="TRIATHLON">TRIATHLON</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_date">Date</label>
+                    <div class="input-group">
+                        <input id="field_date" type="text" class="form-control" name="date" ngbDatepicker  #dateDp="ngbDatepicker" [(ngModel)]="course.date"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_heure">Heure</label>
+                    <input type="text" class="form-control" name="heure" id="field_heure"
+                        [(ngModel)]="course.heure" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_lieu">Lieu</label>
+                    <input type="text" class="form-control" name="lieu" id="field_lieu"
+                        [(ngModel)]="course.lieu" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_prix">Prix</label>
+                    <input type="number" class="form-control" name="prix" id="field_prix"
+                        [(ngModel)]="course.prix" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_image1">Image 1</label>
+                    <div>
+                        <img [src]="'data:' + course.image1ContentType + ';base64,' + course.image1" style="max-height: 100px;" *ngIf="course.image1" alt="course image"/>
+                        <div *ngIf="course.image1" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{course.image1ContentType}}, {{byteSize(course.image1)}}</span>
+                            <button type="button" (click)="clearInputImage('image1', 'image1ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image1" (change)="setFileData($event, course, 'image1', true)" accept="image/*"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image1" id="field_image1"
+                        [(ngModel)]="course.image1" />
+                    <input type="hidden" class="form-control" name="image1ContentType" id="field_image1ContentType"
+                        [(ngModel)]="course.image1ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_image2">Image 2</label>
+                    <div>
+                        <img [src]="'data:' + course.image2ContentType + ';base64,' + course.image2" style="max-height: 100px;" *ngIf="course.image2" alt="course image"/>
+                        <div *ngIf="course.image2" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{course.image2ContentType}}, {{byteSize(course.image2)}}</span>
+                            <button type="button" (click)="clearInputImage('image2', 'image2ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image2" (change)="setFileData($event, course, 'image2', true)" accept="image/*"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image2" id="field_image2"
+                        [(ngModel)]="course.image2" />
+                    <input type="hidden" class="form-control" name="image2ContentType" id="field_image2ContentType"
+                        [(ngModel)]="course.image2ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_image3">Image 3</label>
+                    <div>
+                        <img [src]="'data:' + course.image3ContentType + ';base64,' + course.image3" style="max-height: 100px;" *ngIf="course.image3" alt="course image"/>
+                        <div *ngIf="course.image3" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{course.image3ContentType}}, {{byteSize(course.image3)}}</span>
+                            <button type="button" (click)="clearInputImage('image3', 'image3ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image3" (change)="setFileData($event, course, 'image3', true)" accept="image/*"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image3" id="field_image3"
+                        [(ngModel)]="course.image3" />
+                    <input type="hidden" class="form-control" name="image3ContentType" id="field_image3ContentType"
+                        [(ngModel)]="course.image3ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_image4">Image 4</label>
+                    <div>
+                        <img [src]="'data:' + course.image4ContentType + ';base64,' + course.image4" style="max-height: 100px;" *ngIf="course.image4" alt="course image"/>
+                        <div *ngIf="course.image4" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{course.image4ContentType}}, {{byteSize(course.image4)}}</span>
+                            <button type="button" (click)="clearInputImage('image4', 'image4ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image4" (change)="setFileData($event, course, 'image4', true)" accept="image/*"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image4" id="field_image4"
+                        [(ngModel)]="course.image4" />
+                    <input type="hidden" class="form-control" name="image4ContentType" id="field_image4ContentType"
+                        [(ngModel)]="course.image4ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_image5">Image 5</label>
+                    <div>
+                        <img [src]="'data:' + course.image5ContentType + ';base64,' + course.image5" style="max-height: 100px;" *ngIf="course.image5" alt="course image"/>
+                        <div *ngIf="course.image5" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{course.image5ContentType}}, {{byteSize(course.image5)}}</span>
+                            <button type="button" (click)="clearInputImage('image5', 'image5ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image5" (change)="setFileData($event, course, 'image5', true)" accept="image/*"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image5" id="field_image5"
+                        [(ngModel)]="course.image5" />
+                    <input type="hidden" class="form-control" name="image5ContentType" id="field_image5ContentType"
+                        [(ngModel)]="course.image5ContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label for="field_participants">Participants</label>
+                    <select class="form-control" id="field_participants" multiple name="participants" [(ngModel)]="course.participants">
+                        <option [ngValue]="getSelected(course.participants, userOption)" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

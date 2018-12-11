@@ -1,0 +1,162 @@
+<div class="row" style="padding:3%; height:auto" id="joinRunnersDiv">
+    <div class="col-md-6" style="float:left">
+        <table style="width:100%">
+            <tr>
+                <td>
+                    <h2>Inscription en tant que participant</h2>
+                </td>
+                <td>
+                    <button class="btn btn-primary" id="joinRunnersBack-btn" (click)="backBasePage()">Retour</button>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div class="card" style="overflow:scroll;height:300px">
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="InputName">Nom</label>
+                        <input type="text" class="form-control" id="InputNameR" placeholder="Nom" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="InputSurname">Prénom</label>
+                        <input type="text" class="form-control" id="InputSurnameR" placeholder="Prénom">
+                    </div>
+                    <div class="form-group">
+                        <label for="InputEmail">Adresse mail</label>
+                        <input type="email" class="form-control" id="InputEmailR" aria-describedby="emailHelp" placeholder="Email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <!-- address-line1 input-->
+                    <div class="form-group">
+                        <label>Adresse Ligne 1</label>
+                        <div class="controls">
+                            <input id="address-line1" name="address-line1" type="text" placeholder="address line 1" class="form-control">
+                            <p class="help-block">Street address, P.O. box, company name, c/o</p>
+                        </div>
+                    </div>
+                    <!-- address-line2 input-->
+                    <div class="form-group">
+                        <label>Adress Ligne 2</label>
+                        <div class="controls">
+                            <input id="address-line2" name="address-line2" type="text" placeholder="address line 2" class="form-control">
+                            <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
+                        </div>
+                    </div>
+                    <!-- city input-->
+                    <div class="form-group">
+                        <label>Ville / Lieu-Dit</label>
+                        <div class="controls">
+                            <input id="city" name="city" type="text" placeholder="Ville / Lieu-Dit" class="form-control">
+                        </div>
+                    </div>
+                    <!-- postal-code input-->
+                    <div class="form-group">
+                        <label>Code Postal</label>
+                        <div class="controls">
+                            <input id="postal-code" name="postal-code" type="text" placeholder="code postal" class="form-control">
+                        </div>
+                    </div>
+                    <!-- Telephone number-->
+                    <div class="form-group">
+                        <label>Numéro de Téléphone personnel</label>
+                        <div class="controls">
+                            <input id="tel-number" name="tel-number" type="tel" placeholder="0612345678" class="form-control">
+                        </div>
+                    </div>
+                    <!-- Telephone number-->
+                    <div class="form-group">
+                        <label>Numéro de Téléphone de la personne à prévenir en cas d'urgence</label>
+                        <div class="controls">
+                            <input id="tel-number2" name="tel-number2" type="tel" placeholder="0612345678" class="form-control">
+                        </div>
+                    </div>
+                    <!--Taille t-shirt-->
+                    <div class="form-group">
+                        <label>Taille de T-shirt</label>
+                        <div class="controls">
+                            <select class="form-control" id="shirt-size">
+                                <option>XS</option>
+                                <option>S</option>
+                                <option>M</option>
+                                <option>L</option>
+                                <option>XL</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--File upload-->
+                    <div class="form-group">
+                        <label for="ControlFile">Justificatif médical stipulant la non contre indication à la pratique du sport</label>
+                        <input type="file" class="form-control-file" id="ControlFile">
+                    </div>
+                    <button type="submit" (click)="submittedRunnerForm()" class="btn btn-primary">Suivant</button>
+                </form>
+            </div>
+            <div class="wrapper2" id="greyWrapper2">&nbsp;</div>
+        </div>
+    </div>
+
+    <div class="col-md-6" style="float:right">
+        <!-- CREDIT CARD FORM STARTS HERE -->
+        <div class="panel panel-default credit-card-box" id="payment-div" class="payment-div">
+            <div class="panel-heading display-table">
+                <div class="row display-tr">
+                    <table style="width:100%">
+                        <tr>
+                            <td>
+                                <h2>Paiement</h2>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <div class="panel-body">
+                        <form role="form" id="payment-form" method="POST" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="cardNumber">Numéro de Carte</label>
+                                        <div class="input-group">
+                                            <input type="tel" class="form-control" name="cardNumber" placeholder="1111-2222-3333-4444" autocomplete="cc-number" required />
+                                            <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                            <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=".col-xs-12 .col-sm-6 .col-lg-8">
+                                    <div class="form-group">
+                                        <label for="cardExpiry"><span class="hidden-xs">Date d'expiration</span></label>
+                                        <input type="tel" class="form-control" name="cardExpiry" placeholder="MM/AA" autocomplete="cc-exp" required />
+                                    </div>
+                                </div>
+                                <div class=".col-xs-6 .col-lg-4 pull-right" style="padding-left:5px">
+                                    <div class="form-group">
+                                        <label for="cardCVC">CVC</label>
+                                        <input type="tel" class="form-control" name="cardCVC" placeholder="CVC" autocomplete="cc-csc" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <button class="subscribe btn btn-success btn-lg btn-block" type="submit">Payer</button>
+                                </div>
+                            </div>
+                            <div class="row" style="display:none;">
+                                <div class="col-xs-12">
+                                    <p class="payment-errors"></p>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="wrapper" id="greyWrapper">&nbsp;</div>
+                    </div>
+                </div>
+                <!-- CREDIT CARD FORM ENDS HERE -->
+            </div>
+        </div>
+    </div>
+</div>

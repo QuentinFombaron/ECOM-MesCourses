@@ -1,0 +1,82 @@
+<div class="row" style="padding:3%; overflow:scroll" id="joinBenevolesDiv">
+    <div class="col-md-6" style="float:left">
+        <table style="width:100%">
+            <tr>
+                <td>
+                    <h2>Inscription en tant que bénévole</h2>
+                </td>
+                <td>
+                    <button class="btn btn-primary" id="joinBenevolesBack-btn" (click)="backBasePage()">Retour</button>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="InputName">Nom</label>
+                    <input type="text" class="form-control" id="InputNameB" placeholder="Nom">
+                </div>
+                <div class="form-group">
+                    <label for="InputSurname">Prénom</label>
+                    <input type="text" class="form-control" id="InputSurnameB" placeholder="Prénom">
+                </div>
+                <div class="form-group">
+                    <label for="InputEmail">Adresse mail</label>
+                    <input type="email" class="form-control" id="InputEmailB" aria-describedby="emailHelp" placeholder="Email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="ControlFile">Justificatif</label>
+                    <input type="file" class="form-control-file" id="ControlFile">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" style="float:right">
+        <table style="width:100%">
+            <tr>
+                <td>
+                    <h2>Choix métier section</h2>
+                </td>
+            </tr>
+        </table>
+        <div class="card">
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Choix n°1</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Aucun</option>
+                            <option>Contrôleur</option>
+                            <option>Médecin</option>
+                            <option>Kinésithérapeute</option>
+                            <option>Podologue</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">Choix n°2</label>
+                        <select class="form-control" id="exampleFormControlSelect2">
+                            <option>Aucun</option>
+                            <option>Contrôleur</option>
+                            <option>Médecin</option>
+                            <option>Kinésithérapeute</option>
+                            <option>Podologue</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect3">Choix n°2</label>
+                        <select class="form-control" id="exampleFormControlSelect3">
+                            <option>Aucun</option>
+                            <option>Contrôleur</option>
+                            <option>Médecin</option>
+                            <option>Kinésithérapeute</option>
+                            <option>Podologue</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Confirmer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

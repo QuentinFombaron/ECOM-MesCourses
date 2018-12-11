@@ -1,0 +1,27 @@
+{
+    "name": "CheckPoint",
+    "fields": [
+        {
+            "fieldName": "heure",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "user",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "course",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181211082548",
+    "entityTableName": "check_point",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

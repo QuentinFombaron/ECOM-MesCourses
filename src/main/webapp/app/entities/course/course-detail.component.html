@@ -1,0 +1,114 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="course">
+            <h2><span>Course</span> {{course.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Organisateur</span></dt>
+                <dd>
+                    <span>{{course.organisateur}}</span>
+                </dd>
+                <dt><span>Titre</span></dt>
+                <dd>
+                    <span>{{course.titre}}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{course.description}}</span>
+                </dd>
+                <dt><span>Sport</span></dt>
+                <dd>
+                    <span>{{course.sport}}</span>
+                </dd>
+                <dt><span>Date</span></dt>
+                <dd>
+                    <span>{{course.date}}</span>
+                </dd>
+                <dt><span>Heure</span></dt>
+                <dd>
+                    <span>{{course.heure}}</span>
+                </dd>
+                <dt><span>Longitude</span></dt>
+                <dd>
+                    <span>{{course.longitude}}</span>
+                </dd>
+                <dt><span>Latitude</span></dt>
+                <dd>
+                    <span>{{course.latitude}}</span>
+                </dd>
+                <dt><span>Lieu</span></dt>
+                <dd>
+                    <span>{{course.lieu}}</span>
+                </dd>
+                <dt><span>Prix</span></dt>
+                <dd>
+                    <span>{{course.prix}}</span>
+                </dd>
+                <dt><span>Image 1</span></dt>
+                <dd>
+                    <div *ngIf="course.image1">
+                        <a (click)="openFile(course.image1ContentType, course.image1)">
+                            <img [src]="'data:' + course.image1ContentType + ';base64,' + course.image1" style="max-width: 100%;" alt="course image"/>
+                        </a>
+                        {{course.image1ContentType}}, {{byteSize(course.image1)}}
+                    </div>
+                </dd>
+                <dt><span>Image 2</span></dt>
+                <dd>
+                    <div *ngIf="course.image2">
+                        <a (click)="openFile(course.image2ContentType, course.image2)">
+                            <img [src]="'data:' + course.image2ContentType + ';base64,' + course.image2" style="max-width: 100%;" alt="course image"/>
+                        </a>
+                        {{course.image2ContentType}}, {{byteSize(course.image2)}}
+                    </div>
+                </dd>
+                <dt><span>Image 3</span></dt>
+                <dd>
+                    <div *ngIf="course.image3">
+                        <a (click)="openFile(course.image3ContentType, course.image3)">
+                            <img [src]="'data:' + course.image3ContentType + ';base64,' + course.image3" style="max-width: 100%;" alt="course image"/>
+                        </a>
+                        {{course.image3ContentType}}, {{byteSize(course.image3)}}
+                    </div>
+                </dd>
+                <dt><span>Image 4</span></dt>
+                <dd>
+                    <div *ngIf="course.image4">
+                        <a (click)="openFile(course.image4ContentType, course.image4)">
+                            <img [src]="'data:' + course.image4ContentType + ';base64,' + course.image4" style="max-width: 100%;" alt="course image"/>
+                        </a>
+                        {{course.image4ContentType}}, {{byteSize(course.image4)}}
+                    </div>
+                </dd>
+                <dt><span>Image 5</span></dt>
+                <dd>
+                    <div *ngIf="course.image5">
+                        <a (click)="openFile(course.image5ContentType, course.image5)">
+                            <img [src]="'data:' + course.image5ContentType + ';base64,' + course.image5" style="max-width: 100%;" alt="course image"/>
+                        </a>
+                        {{course.image5ContentType}}, {{byteSize(course.image5)}}
+                    </div>
+                </dd>
+                <dt><span>Participants</span></dt>
+                <dd>
+                    <span *ngFor="let participants of course.participants; let last = last">
+                        {{participants.id}}{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/course', course.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

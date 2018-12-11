@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="userDocuments">
+            <h2><span>User Documents</span> {{userDocuments.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Date De Naissance</span></dt>
+                <dd>
+                    <span>{{userDocuments.dateDeNaissance}}</span>
+                </dd>
+                <dt><span>Sexe</span></dt>
+                <dd>
+                    <span>{{userDocuments.sexe}}</span>
+                </dd>
+                <dt><span>Certificat Medical</span></dt>
+                <dd>
+                    <div *ngIf="userDocuments.certificatMedical">
+                        <a (click)="openFile(userDocuments.certificatMedicalContentType, userDocuments.certificatMedical)">
+                            <img [src]="'data:' + userDocuments.certificatMedicalContentType + ';base64,' + userDocuments.certificatMedical" style="max-width: 100%;" alt="userDocuments image"/>
+                        </a>
+                        {{userDocuments.certificatMedicalContentType}}, {{byteSize(userDocuments.certificatMedical)}}
+                    </div>
+                </dd>
+                <dt><span>License Federale</span></dt>
+                <dd>
+                    <div *ngIf="userDocuments.licenseFederale">
+                        <a (click)="openFile(userDocuments.licenseFederaleContentType, userDocuments.licenseFederale)">
+                            <img [src]="'data:' + userDocuments.licenseFederaleContentType + ';base64,' + userDocuments.licenseFederale" style="max-width: 100%;" alt="userDocuments image"/>
+                        </a>
+                        {{userDocuments.licenseFederaleContentType}}, {{byteSize(userDocuments.licenseFederale)}}
+                    </div>
+                </dd>
+                <dt><span>Document Complementaire</span></dt>
+                <dd>
+                    <div *ngIf="userDocuments.documentComplementaire">
+                        <a (click)="openFile(userDocuments.documentComplementaireContentType, userDocuments.documentComplementaire)">
+                            <img [src]="'data:' + userDocuments.documentComplementaireContentType + ';base64,' + userDocuments.documentComplementaire" style="max-width: 100%;" alt="userDocuments image"/>
+                        </a>
+                        {{userDocuments.documentComplementaireContentType}}, {{byteSize(userDocuments.documentComplementaire)}}
+                    </div>
+                </dd>
+                <dt><span>User</span></dt>
+                <dd>
+                    {{userDocuments.user?.id}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/user-documents', userDocuments.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

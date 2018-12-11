@@ -1,0 +1,128 @@
+<div>
+    <h2 id="page-heading">
+        <span>Courses</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-course" [routerLink]="['/course/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down" >
+            Create new Course
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="courses">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Organisateur</span></th>
+            <th><span>Titre</span></th>
+            <th><span>Description</span></th>
+            <th><span>Sport</span></th>
+            <th><span>Date</span></th>
+            <th><span>Heure</span></th>
+            <th><span>Longitude</span></th>
+            <th><span>Latitude</span></th>
+            <th><span>Lieu</span></th>
+            <th><span>Prix</span></th>
+            <th><span>Image 1</span></th>
+            <th><span>Image 2</span></th>
+            <th><span>Image 3</span></th>
+            <th><span>Image 4</span></th>
+            <th><span>Image 5</span></th>
+            <th><span>Participants</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let course of courses ;trackBy: trackId">
+                <td><a [routerLink]="['/course', course.id, 'view' ]">{{course.id}}</a></td>
+                <td>{{course.organisateur}}</td>
+                <td>{{course.titre}}</td>
+                <td>{{course.description}}</td>
+                <td>{{course.sport}}</td>
+                <td>{{course.date | date:'mediumDate'}}</td>
+                <td>{{course.heure}}</td>
+                <td>{{course.longitude}}</td>
+                <td>{{course.latitude}}</td>
+                <td>{{course.lieu}}</td>
+                <td>{{course.prix}}</td>
+                <td>
+                    <a *ngIf="course.image1" (click)="openFile(course.image1ContentType, course.image1)">
+                        <img [src]="'data:' + course.image1ContentType + ';base64,' + course.image1" style="max-height: 30px;" alt="course image"/>
+                    </a>
+                    <span *ngIf="course.image1">{{course.image1ContentType}}, {{byteSize(course.image1)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="course.image2" (click)="openFile(course.image2ContentType, course.image2)">
+                        <img [src]="'data:' + course.image2ContentType + ';base64,' + course.image2" style="max-height: 30px;" alt="course image"/>
+                    </a>
+                    <span *ngIf="course.image2">{{course.image2ContentType}}, {{byteSize(course.image2)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="course.image3" (click)="openFile(course.image3ContentType, course.image3)">
+                        <img [src]="'data:' + course.image3ContentType + ';base64,' + course.image3" style="max-height: 30px;" alt="course image"/>
+                    </a>
+                    <span *ngIf="course.image3">{{course.image3ContentType}}, {{byteSize(course.image3)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="course.image4" (click)="openFile(course.image4ContentType, course.image4)">
+                        <img [src]="'data:' + course.image4ContentType + ';base64,' + course.image4" style="max-height: 30px;" alt="course image"/>
+                    </a>
+                    <span *ngIf="course.image4">{{course.image4ContentType}}, {{byteSize(course.image4)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="course.image5" (click)="openFile(course.image5ContentType, course.image5)">
+                        <img [src]="'data:' + course.image5ContentType + ';base64,' + course.image5" style="max-height: 30px;" alt="course image"/>
+                    </a>
+                    <span *ngIf="course.image5">{{course.image5ContentType}}, {{byteSize(course.image5)}}</span>
+                </td>
+                <td>
+                    <span *ngFor="let participants of course.participants; let last = last">
+                            {{participants.id}}{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/course', course.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/course', course.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'course/'+ course.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

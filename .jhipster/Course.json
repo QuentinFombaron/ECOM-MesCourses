@@ -1,0 +1,90 @@
+{
+    "name": "Course",
+    "fields": [
+        {
+            "fieldName": "organisateur",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "titre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sport",
+            "fieldType": "Sport",
+            "fieldValues": "COURSE_A_PIED,MARATHON,RANDONNEE,COURSE_A_VELO,TRIATHLON"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "heure",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "longitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "latitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "lieu",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prix",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "image1",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "image2",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "image3",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "image4",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "image5",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "participants",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20181023152006",
+    "entityTableName": "course",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

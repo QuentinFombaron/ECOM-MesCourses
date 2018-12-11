@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="checkPoint">
+            <h2><span>Check Point</span> {{checkPoint.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Heure</span></dt>
+                <dd>
+                    <span>{{checkPoint.heure}}</span>
+                </dd>
+                <dt><span>User</span></dt>
+                <dd>
+                    <span>{{checkPoint.user}}</span>
+                </dd>
+                <dt><span>Course</span></dt>
+                <dd>
+                    <span>{{checkPoint.course}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/check-point', checkPoint.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

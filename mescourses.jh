@@ -1,0 +1,57 @@
+enum Sport {
+    COURSE_A_PIED, MARATHON, RANDONNEE, COURSE_A_VELO, TRIATHLON
+}
+
+enum Metier {
+    MEDECIN, KINESITHERAPEUTE, PODOLOGUE, CONTROLEUR
+}
+
+enum Sexe {
+    HOMME, FEMME
+}
+
+entity UserDocuments {
+    dateDeNaissance LocalDate,
+    sexe Sexe,
+    certificatMedical ImageBlob,
+    licenseFederale ImageBlob,
+    documentComplementaire ImageBlob
+}
+
+entity Course {
+    organisateur Integer,
+    titre String,
+    description String,
+    sport Sport,
+    date LocalDate,
+    heure String,
+    longitude Double,
+    latitude Double,
+    lieu String,
+    prix Double,
+    image1 ImageBlob,
+    image2 ImageBlob,
+    image3 ImageBlob,
+    image4 ImageBlob,
+    image5 ImageBlob
+}
+
+entity Inscription {
+    role Metier,
+    user Integer,
+    course Integer
+}
+
+entity CheckPoint {
+    heure String,
+    user Integer,
+    course Integer
+}
+
+relationship ManyToMany {
+    Course{participants} to User
+}
+
+relationship OneToOne {
+    UserDocuments{user} to User
+}

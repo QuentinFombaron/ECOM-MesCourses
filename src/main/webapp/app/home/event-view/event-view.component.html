@@ -1,0 +1,13 @@
+<ul class="list-group" style="overflow:scroll; max-height:300px;">
+    <li *ngFor="let event of events" class="list-group-item list-group-item-action flex-column align-items-start"
+        [ngClass]="{active : event.id === activeItem}" (click)="activeItem = event.id">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ event.titre }}</h5>
+            <small>{{ event.date | date: 'fullDate' }}</small>
+        </div>
+        <p class="mb-1">{{ event.description }}
+            <button class="btn btn-success float-right" [routerLink]="['/visualisation', event.id]">Détails</button>
+        </p>
+        <small>Un(e) <b>{{ getSportString(event.sport) }}</b> de {{ getOrganisateurById(event.organisateur) }}</small>
+    </li>
+</ul>

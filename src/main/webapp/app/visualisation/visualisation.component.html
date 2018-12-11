@@ -1,0 +1,121 @@
+<div class="row" *ngIf="course">
+    <div class="col-md-6">
+        <h1 class="display-4">{{course.titre}}</h1>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+<div class="row" style="padding:3%;" *ngIf="course">
+    <div class="col-md-4">
+        <div class="column">
+            <div *ngFor="let picture of getPictures()" class="row">
+                <img class="littleImages" src="data:image/png;base64,{{picture}}" style="max-width:50px;max-height:50px;padding:5px" (click)="openImg(picture);">
+            </div>
+        </div>
+        <!-- The expanding image container -->
+        <div class="column">
+            <div class="container">
+                <!-- Expanded image -->
+                <img id="expandedImg" src="data:image/png;base64,{{this.pictures[0]}}" style="max-width:250px;max-height:250px">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <table style="width:100%">
+                    <tr>
+                        <td>
+                            <i class="fas fa-running"></i>
+                        </td>
+                        <td>{{ getSportString(course.sport) }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <fa-icon [icon]="'user'"></fa-icon>
+                        </td>
+                        <td>Créé par <b>{{ getOrganisateurById(course.organisateur) }}</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fas fa-map-marker-alt"></i>
+                        </td>
+                        <td>À <b>{{course.lieu}}</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <fa-icon [icon]="'calendar-alt'"></fa-icon>
+                        </td>
+                        <td>Le {{course.date | date: 'dd/MM/yyyy'}} à {{ course.heure }} </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fas fa-euro-sign"></i>
+                        </td>
+                        <td>{{ course.prix }} euros</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-info">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-info-circle"></i> Informations</h5>
+                {{course.description}}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row" style="padding:3%" id="JoinDiv">
+    <div class="col-md-6" style="float:left">
+        <div class="card">
+            <div class="card-body">
+                <table style="width:100%">
+                    <tr>
+                        <td>
+                            <h2>Participants</h2>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" style="float:right" id="joinRunners-btn" (click)="joinRunnersClicked()">Rejoindre</button>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <table style="width:100%">
+                    <tr *ngFor="let coureur of getCoureursInscrits()">
+                        <fa-icon [icon]="'user'"></fa-icon> {{coureur.firstName}} {{coureur.lastName}}
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" style="float:right">
+        <div class="card">
+            <div class="card-body">
+                <table style="width:100%" id="benevolesTable">
+                    <tr>
+                        <td>
+                            <h2>Bénévoles</h2>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" style="float:right" id="joinBenevoles-btn" (click)="joinBenevolesClicked()">Rejoindre</button>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <table style="width:100%">
+                    <tr>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<jhi-runner-form id="joinRunnersDiv"></jhi-runner-form>
+<jhi-benevoles-form id="joinBenevolesDiv"></jhi-benevoles-form>

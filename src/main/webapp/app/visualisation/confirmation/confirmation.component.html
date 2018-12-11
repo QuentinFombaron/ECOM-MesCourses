@@ -1,0 +1,8 @@
+<div class="col" style="text-align:center">
+    <h1>Merci de vous être inscrit ! Vous allez recevoir un mail de confirmation sur votre boîte mail.</h1>
+    <h2>Ceci est votre QR code, il sera associé à votre dossard.</h2>
+    <button class="btn btn-success" [routerLink]="['/']">Retour à l'acceuil</button><br><br>
+    <div style="max-width:256px; margin-left:auto; margin-right:auto">
+        <qrcode [qrdata]=text [size]="256" [level]="'M'"></qrcode>
+    </div>
+</div>

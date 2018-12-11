@@ -1,0 +1,99 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-user-documents-heading">Create or edit a User Documents</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!userDocuments.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="userDocuments.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dateDeNaissance">Date De Naissance</label>
+                    <div class="input-group">
+                        <input id="field_dateDeNaissance" type="text" class="form-control" name="dateDeNaissance" ngbDatepicker  #dateDeNaissanceDp="ngbDatepicker" [(ngModel)]="userDocuments.dateDeNaissance"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateDeNaissanceDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sexe">Sexe</label>
+                    <select class="form-control" name="sexe" [(ngModel)]="userDocuments.sexe" id="field_sexe" >
+                        <option value="HOMME">HOMME</option>
+                        <option value="FEMME">FEMME</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_certificatMedical">Certificat Medical</label>
+                    <div>
+                        <img [src]="'data:' + userDocuments.certificatMedicalContentType + ';base64,' + userDocuments.certificatMedical" style="max-height: 100px;" *ngIf="userDocuments.certificatMedical" alt="userDocuments image"/>
+                        <div *ngIf="userDocuments.certificatMedical" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{userDocuments.certificatMedicalContentType}}, {{byteSize(userDocuments.certificatMedical)}}</span>
+                            <button type="button" (click)="clearInputImage('certificatMedical', 'certificatMedicalContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_certificatMedical" (change)="setFileData($event, userDocuments, 'certificatMedical', true)" accept="image/*"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="certificatMedical" id="field_certificatMedical"
+                        [(ngModel)]="userDocuments.certificatMedical" />
+                    <input type="hidden" class="form-control" name="certificatMedicalContentType" id="field_certificatMedicalContentType"
+                        [(ngModel)]="userDocuments.certificatMedicalContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_licenseFederale">License Federale</label>
+                    <div>
+                        <img [src]="'data:' + userDocuments.licenseFederaleContentType + ';base64,' + userDocuments.licenseFederale" style="max-height: 100px;" *ngIf="userDocuments.licenseFederale" alt="userDocuments image"/>
+                        <div *ngIf="userDocuments.licenseFederale" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{userDocuments.licenseFederaleContentType}}, {{byteSize(userDocuments.licenseFederale)}}</span>
+                            <button type="button" (click)="clearInputImage('licenseFederale', 'licenseFederaleContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_licenseFederale" (change)="setFileData($event, userDocuments, 'licenseFederale', true)" accept="image/*"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="licenseFederale" id="field_licenseFederale"
+                        [(ngModel)]="userDocuments.licenseFederale" />
+                    <input type="hidden" class="form-control" name="licenseFederaleContentType" id="field_licenseFederaleContentType"
+                        [(ngModel)]="userDocuments.licenseFederaleContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_documentComplementaire">Document Complementaire</label>
+                    <div>
+                        <img [src]="'data:' + userDocuments.documentComplementaireContentType + ';base64,' + userDocuments.documentComplementaire" style="max-height: 100px;" *ngIf="userDocuments.documentComplementaire" alt="userDocuments image"/>
+                        <div *ngIf="userDocuments.documentComplementaire" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{userDocuments.documentComplementaireContentType}}, {{byteSize(userDocuments.documentComplementaire)}}</span>
+                            <button type="button" (click)="clearInputImage('documentComplementaire', 'documentComplementaireContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_documentComplementaire" (change)="setFileData($event, userDocuments, 'documentComplementaire', true)" accept="image/*"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="documentComplementaire" id="field_documentComplementaire"
+                        [(ngModel)]="userDocuments.documentComplementaire" />
+                    <input type="hidden" class="form-control" name="documentComplementaireContentType" id="field_documentComplementaireContentType"
+                        [(ngModel)]="userDocuments.documentComplementaireContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" [(ngModel)]="userDocuments.user" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === userDocuments.user?.id ? userDocuments.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

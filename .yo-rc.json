@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "ecom.mescourses"
+    },
+    "jhipsterVersion": "5.3.4",
+    "applicationType": "monolith",
+    "baseName": "MesCourses",
+    "packageName": "ecom.mescourses",
+    "packageFolder": "ecom/mescourses",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YWJiMjg1MGMxZWZlOTE4NzgxY2Y5NmI5MzlmMDhjYTA1ZTIzZjk4YmNhNTljNjIwZmZjYzQwODI3MWJhYmY1MmFmNGQ5OTc3YzA1ZGQzZTNmY2UwNWJlMmQzZWIwNTExYWQ5OTE3ODM0ZjJiOTEyYjg1MTg0ZjRlOGM0OGNiOTc=",
+    "clientFramework": "angularX",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [
+      "gatling",
+      "cucumber",
+      "protractor"
+    ],
+    "jhiPrefix": "jhi",
+    "enableTranslation": false,
+    "herokuAppName": "mes-courses-2018",
+    "herokuDeployType": "jar"
+  }
+}
